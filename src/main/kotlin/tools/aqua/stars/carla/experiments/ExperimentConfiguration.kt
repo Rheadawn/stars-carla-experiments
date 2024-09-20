@@ -67,6 +67,20 @@ class ExperimentConfiguration : CliktCommand() {
                   "A list of TSC projections that should be ignored (given as a String, separated by ',')")
           .split(",")
           .default(listOf())
+
+    private val segmentationType: String by
+      option(
+              "--segmentationType",
+              help =
+                  "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS")
+          .default("BY_BLOCK")
+
+    private val segmentationValue: Int? by
+        option(
+                "--segmentationValue",
+                help =
+                    "The value of the segmentation to use. E.g. the number of blocks, the size of the segments, etc.")
+            .int()
   // endregion
 
   override fun run() {
@@ -80,7 +94,7 @@ class ExperimentConfiguration : CliktCommand() {
             "--staticFilter=$staticFilter " +
             "--ignore=$projectionIgnoreList ")
 
-    downloadAndUnzipExperimentsData()
+    //downloadAndUnzipExperimentsData()
 
     val tsc = tsc()
 
@@ -104,6 +118,7 @@ class ExperimentConfiguration : CliktCommand() {
             minSegmentTickCount = minSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
+            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue)
         )
 
     val validTSCInstancesPerProjectionMetric =

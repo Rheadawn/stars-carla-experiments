@@ -25,7 +25,10 @@ group = "tools.aqua"
 
 version = "0.4"
 
-repositories { mavenCentral() }
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
 
 var starsVersion = "0.4"
 
