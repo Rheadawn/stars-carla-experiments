@@ -72,7 +72,7 @@ class ExperimentConfiguration : CliktCommand() {
       option(
               "--segmentationType",
               help =
-                  "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS")
+                  "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS, SLIDING_WINDOW, 12")
           .default("BY_BLOCK")
 
     private val segmentationValue: Int? by
@@ -81,6 +81,13 @@ class ExperimentConfiguration : CliktCommand() {
                 help =
                     "The value of the segmentation to use. E.g. the number of blocks, the size of the segments, etc.")
             .int()
+
+    private val includeJunctionsInSegmentation: Boolean by
+        option(
+                "--includeJunctionsInSegmentation",
+                help =
+                    "Whether to include junctions in the segmentation. If set to true, junctions will also be segmented.")
+            .flag(default = false)
   // endregion
 
   override fun run() {
@@ -118,7 +125,7 @@ class ExperimentConfiguration : CliktCommand() {
             minSegmentTickCount = minSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
-            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue)
+            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, includeJunctionsInSegmentation)
         )
 
     val validTSCInstancesPerProjectionMetric =

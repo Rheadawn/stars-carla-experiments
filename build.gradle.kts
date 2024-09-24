@@ -59,6 +59,9 @@ spotless {
 
 tasks.test { useJUnitPlatform() }
 
-application { mainClass.set("tools.aqua.stars.carla.experiments.Experiment") }
+application {
+  mainClass.set("tools.aqua.stars.carla.experiments.Experiment")
+  applicationDefaultJvmArgs = listOf("-Xmx40g", "-Xms2g")
+}
 
 kotlin { jvmToolchain(17) }
