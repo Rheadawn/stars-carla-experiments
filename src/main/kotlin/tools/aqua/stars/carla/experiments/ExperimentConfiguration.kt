@@ -72,7 +72,7 @@ class ExperimentConfiguration : CliktCommand() {
       option(
               "--segmentationType",
               help =
-                  "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS, SLIDING_WINDOW, 12")
+                  "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS, SLIDING_WINDOW, SLIDING_WINDOW_BY_BLOCK, BY_SPEED_LIMITS")
           .default("BY_BLOCK")
 
     private val segmentationValue: Int? by
@@ -81,6 +81,13 @@ class ExperimentConfiguration : CliktCommand() {
                 help =
                     "The value of the segmentation to use. E.g. the number of blocks, the size of the segments, etc.")
             .int()
+
+    private val secondarySegmentationValue: Int? by
+    option(
+        "--secondarySegmentationValue",
+        help =
+        "The secondary value of the segmentation to use. E.g. the step size for sliding window.")
+        .int()
 
     private val includeJunctionsInSegmentation: Boolean by
         option(
@@ -125,7 +132,7 @@ class ExperimentConfiguration : CliktCommand() {
             minSegmentTickCount = minSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
-            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, includeJunctionsInSegmentation)
+            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, includeJunctionsInSegmentation)
         )
 
     val validTSCInstancesPerProjectionMetric =
