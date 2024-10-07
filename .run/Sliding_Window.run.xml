@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--allEgo --segmentationType=SLIDING_WINDOW --segmentationValue=100&quot;" />
+          <option value="--args=&quot;--segmentationType=SLIDING_WINDOW --segmentationValue=100&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
