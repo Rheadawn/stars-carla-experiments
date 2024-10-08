@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Sliding_Window" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Sliding_Window_By_Traffic_Density" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--segmentationType=SLIDING_WINDOW --segmentationValue=70 --secondarySegmentationValue=5 --minSegmentTicks=0&quot;" />
+          <option value="--args=&quot;--segmentationType=SLIDING_WINDOW_BY_TRAFFIC_DENSITY --secondarySegmentationValue=5 --minSegmentTicks=0&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
