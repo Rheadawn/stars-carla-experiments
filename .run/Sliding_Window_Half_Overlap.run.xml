@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--segmentationType=SLIDING_WINDOW_HALF_OVERLAP&quot;" />
+          <option value="--args=&quot;--segmentationType=SLIDING_WINDOW_HALF_OVERLAP --includeJunctionsInSegmentation&quot;" />
         </list>
       </option>
       <option name="vmOptions" />

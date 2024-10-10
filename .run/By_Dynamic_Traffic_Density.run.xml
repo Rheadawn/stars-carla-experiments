@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--segmentationType=BY_DYNAMIC_TRAFFIC_DENSITY --minSegmentTicks=0&quot;" />
+          <option value="--args=&quot;--segmentationType=BY_DYNAMIC_TRAFFIC_DENSITY&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
