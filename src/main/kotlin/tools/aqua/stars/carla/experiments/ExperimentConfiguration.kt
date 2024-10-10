@@ -22,6 +22,7 @@ import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.split
+import com.github.ajalt.clikt.parameters.types.double
 import com.github.ajalt.clikt.parameters.types.int
 import java.io.File
 import java.net.URL
@@ -82,6 +83,13 @@ class ExperimentConfiguration : CliktCommand() {
                     "The value of the segmentation to use. E.g. the number of blocks, the size of the segments, etc.")
             .int()
 
+    private val overlapPercentage: Double? by
+    option(
+        "--overlap",
+        help =
+        "The percentage of overlap for a sliding window")
+        .double()
+
     private val secondarySegmentationValue: Int? by
     option(
         "--secondarySegmentationValue",
@@ -89,11 +97,11 @@ class ExperimentConfiguration : CliktCommand() {
         "The secondary value of the segmentation to use. E.g. the step size for sliding window.")
         .int()
 
-    private val includeJunctionsInSegmentation: Boolean by
+    private val addJunctions: Boolean by
         option(
-                "--includeJunctionsInSegmentation",
+                "--addJunctions",
                 help =
-                    "Whether to include junctions in the segmentation. If set to true, junctions will also be segmented.")
+                    "Whether to include junctions in the segmentation. If set to true, junctions will be added as additional segments.")
             .flag(default = false)
   // endregion
 
@@ -132,7 +140,7 @@ class ExperimentConfiguration : CliktCommand() {
             minSegmentTickCount = minSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
-            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, includeJunctionsInSegmentation)
+            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, overlapPercentage, addJunctions)
         )
 
     val validTSCInstancesPerProjectionMetric =
