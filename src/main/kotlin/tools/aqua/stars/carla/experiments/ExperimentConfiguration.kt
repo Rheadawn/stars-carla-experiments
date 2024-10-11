@@ -52,6 +52,9 @@ class ExperimentConfiguration : CliktCommand() {
   private val minSegmentTickCount: Int by
       option("--minSegmentTicks", help = "Minimum ticks per segment").int().default(10)
 
+  private val maxSegmentTickCount: Int by
+    option("--maxSegmentTicks", help = "Maximum ticks per segment").int().default(Int.MAX_VALUE)
+
   private val sortBySeed: Boolean by
       option("--sorted", help = "Whether to sort data by seed").flag(default = true)
 
@@ -138,6 +141,7 @@ class ExperimentConfiguration : CliktCommand() {
         loadSegments(
             useEveryVehicleAsEgo = allEgo,
             minSegmentTickCount = minSegmentTickCount,
+            maxSegmentTickCount = maxSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
             segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, overlapPercentage, addJunctions)
