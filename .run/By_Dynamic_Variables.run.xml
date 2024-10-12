@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="By_Dynamic_Variables" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="By_Dynamic_Variables" type="GradleRunConfiguration" factoryName="Gradle" folderName="Non_Overlap_Dynamic">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />

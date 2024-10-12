@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Sliding_Window_By_Traffic_Density" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Sliding_Window_By_Traffic_Density" type="GradleRunConfiguration" factoryName="Gradle" folderName="Sliding Window">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />

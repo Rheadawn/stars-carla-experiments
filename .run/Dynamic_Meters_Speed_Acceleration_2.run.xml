@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Sliding_Window_Meters" type="GradleRunConfiguration" factoryName="Gradle" folderName="Sliding Window">
+  <configuration default="false" name="Dynamic_Meters_Speed_Acceleration_2" type="GradleRunConfiguration" factoryName="Gradle" folderName="BA_Methods">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--segmentationType=SLIDING_WINDOW_METERS --segmentationValue=120 --secondarySegmentationValue=5 --includeJunctionsInSegmentation&quot;" />
+          <option value="--args=&quot;--segmentationType=DYNAMIC_SEGMENT_LENGTH_METERS_SPEED_ACCELERATION_2&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
