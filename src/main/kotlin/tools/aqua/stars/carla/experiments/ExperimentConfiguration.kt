@@ -79,12 +79,12 @@ class ExperimentConfiguration : CliktCommand() {
                   "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS, SLIDING_WINDOW, SLIDING_WINDOW_BY_BLOCK, BY_SPEED_LIMITS")
           .default("BY_BLOCK")
 
-    private val segmentationValue: Int? by
+    private val segmentationValue: Double? by
         option(
                 "--segmentationValue",
                 help =
                     "The value of the segmentation to use. E.g. the number of blocks, the size of the segments, etc.")
-            .int()
+            .double()
 
     private val overlapPercentage: Double? by
     option(
@@ -93,12 +93,12 @@ class ExperimentConfiguration : CliktCommand() {
         "The percentage of overlap for a sliding window")
         .double()
 
-    private val secondarySegmentationValue: Int? by
+    private val secondarySegmentationValue: Double? by
     option(
         "--secondarySegmentationValue",
         help =
         "The secondary value of the segmentation to use. E.g. the step size for sliding window.")
-        .int()
+        .double()
 
     private val addJunctions: Boolean by
         option(
