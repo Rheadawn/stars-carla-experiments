@@ -79,26 +79,26 @@ class ExperimentConfiguration : CliktCommand() {
                   "The type of segmentation to use. Possible values: NONE, BY_BLOCK, EVEN_SIZE, BY_LENGTH, BY_TICKS, SLIDING_WINDOW, SLIDING_WINDOW_BY_BLOCK, BY_SPEED_LIMITS")
           .default("BY_BLOCK")
 
-    private val segmentationValue: Int? by
+    private val segmentationValue: Double? by
         option(
                 "--segmentationValue",
                 help =
-                    "The value of the segmentation to use. E.g. the number of blocks, the size of the segments, etc.")
-            .int()
+                    "The first parameter for the segmentation. E.g. segmentSize, windowSize or lookAhead.")
+            .double()
 
-    private val overlapPercentage: Double? by
-    option(
-        "--overlap",
-        help =
-        "The percentage of overlap for a sliding window")
-        .double()
-
-    private val secondarySegmentationValue: Int? by
+    private val secondarySegmentationValue: Double? by
     option(
         "--secondarySegmentationValue",
         help =
-        "The secondary value of the segmentation to use. E.g. the step size for sliding window.")
-        .int()
+        "The second parameter for the segmentation. E.g. stepSize, overlapPercentage or scalar.")
+        .double()
+
+    private val tertiarySegmentationValue: Double? by
+    option(
+        "--tertiarySegmentationValue",
+        help =
+        "The third parameter for the segmentation. E.g. stepSize.")
+        .double()
 
     private val addJunctions: Boolean by
         option(
@@ -117,7 +117,12 @@ class ExperimentConfiguration : CliktCommand() {
             "--sortBySeed=$sortBySeed " +
             "--dynamicFilter=$dynamicFilter " +
             "--staticFilter=$staticFilter " +
-            "--ignore=$projectionIgnoreList ")
+            "--ignore=$projectionIgnoreList " +
+            "--segmentationType=$segmentationType " +
+            "--segmentationValue=$segmentationValue " +
+            "--secondarySegmentationValue=$secondarySegmentationValue " +
+            "--tertiarySegmentationValue=$tertiarySegmentationValue " +
+            "--addJunctions=$addJunctions")
 
     //downloadAndUnzipExperimentsData()
 
@@ -144,7 +149,7 @@ class ExperimentConfiguration : CliktCommand() {
             maxSegmentTickCount = maxSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
-            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, overlapPercentage, addJunctions)
+            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, tertiarySegmentationValue, addJunctions)
         )
 
     val validTSCInstancesPerProjectionMetric =

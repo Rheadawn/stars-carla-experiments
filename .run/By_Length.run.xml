@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--segmentationType=BY_LENGTH --segmentationValue=200&quot;" />
+          <option value="--args=&quot;--segmentationType=BY_LENGTH --segmentationValue=172&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
