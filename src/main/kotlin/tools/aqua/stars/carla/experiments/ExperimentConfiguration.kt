@@ -323,7 +323,7 @@ class ExperimentConfiguration : CliktCommand() {
                 "_seed([0-9]{1,4})".toRegex().find(it.fileName.name)?.groups?.get(1)?.value?.toInt()
                     ?: 0
               }
-              return@mapNotNull CarlaSimulationRunsWrapper(staticFile, dynamicFiles)
+              return@mapNotNull CarlaSimulationRunsWrapper(staticFile!!, dynamicFiles)
             }
       }
 
