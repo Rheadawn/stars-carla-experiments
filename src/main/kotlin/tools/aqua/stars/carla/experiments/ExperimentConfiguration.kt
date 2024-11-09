@@ -173,7 +173,7 @@ class ExperimentConfiguration : CliktCommand() {
 
     reproduction?.let { baselineDirectory = it }
 
-    downloadAndUnzipExperimentsData()
+    //downloadAndUnzipExperimentsData()
 
     if (showMemoryConsumption) {
       Thread {
