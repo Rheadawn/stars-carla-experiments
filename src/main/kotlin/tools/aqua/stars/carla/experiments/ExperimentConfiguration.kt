@@ -142,9 +142,19 @@ class ExperimentConfiguration : CliktCommand() {
                 help =
                     "Whether to include junctions in the segmentation. If set to true, junctions will be added as additional segments.")
             .flag(default = false)
+
+    private val folderName: String by
+        option(
+            "--folderName",
+            help =
+            "Name of the folder for the serialized metric results")
+            .default("test_run")
+
   // endregion
 
   override fun run() {
+      ApplicationConstantsHolder.folderName = folderName
+
     ApplicationConstantsHolder.executionCommand =
         """
         --input=$simulationRunFolder
@@ -242,6 +252,8 @@ class ExperimentConfiguration : CliktCommand() {
                   MissedTSCInstancesPerTSCMetric(),
                   MissedPredicateCombinationsPerTSCMetric(validTSCInstancesPerProjectionMetric),
                   FailedMonitorsMetric(validTSCInstancesPerProjectionMetric),
+                  SegmentEvaluationTimeMetric(validTSCInstancesPerProjectionMetric),
+                  SegmentLengthMetric(validTSCInstancesPerProjectionMetric),
               )
               println("Run Evaluation")
               runEvaluation(segments = segments)
