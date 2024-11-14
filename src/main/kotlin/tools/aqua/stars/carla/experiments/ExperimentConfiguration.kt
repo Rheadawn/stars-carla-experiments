@@ -150,10 +150,18 @@ class ExperimentConfiguration : CliktCommand() {
             "Name of the folder for the serialized metric results")
             .default("test_run")
 
+    private val featureName: String by
+        option(
+            "--featureName",
+            help =
+            "Name of the feature for the feature-coverage metric")
+            .default("Overtaking")
+
   // endregion
 
   override fun run() {
       ApplicationConstantsHolder.folderName = folderName
+      ApplicationConstantsHolder.featureName = featureName.lowercase().trim()
 
     ApplicationConstantsHolder.executionCommand =
         """
@@ -176,6 +184,8 @@ class ExperimentConfiguration : CliktCommand() {
         --secondarySegmentationValue=$secondarySegmentationValue
         --tertiarySegmentationValue=$tertiarySegmentationValue
         --addJunctions=$addJunctions
+        --folderName=$folderName
+        --featureName=$featureName
     """
             .trimIndent()
     println("Executing with the following settings:")
@@ -243,16 +253,16 @@ class ExperimentConfiguration : CliktCommand() {
                 compareToPreviousRun = compareToPreviousRun)
             .apply {
               registerMetricProviders(
-                  TotalSegmentTickDifferencePerIdentifierMetric(),
-                  SegmentCountMetric(),
-                  AverageVehiclesInEgosBlockMetric(),
-                  TotalSegmentTickDifferenceMetric(),
+//                  TotalSegmentTickDifferencePerIdentifierMetric(),
+//                  SegmentCountMetric(),
+//                  AverageVehiclesInEgosBlockMetric(),
+//                  TotalSegmentTickDifferenceMetric(),
                   validTSCInstancesPerProjectionMetric,
-                  InvalidTSCInstancesPerTSCMetric(),
+//                  InvalidTSCInstancesPerTSCMetric(),
                   MissedTSCInstancesPerTSCMetric(),
                   MissedPredicateCombinationsPerTSCMetric(validTSCInstancesPerProjectionMetric),
-                  FailedMonitorsMetric(validTSCInstancesPerProjectionMetric),
-                  SegmentEvaluationTimeMetric(validTSCInstancesPerProjectionMetric),
+//                  FailedMonitorsMetric(validTSCInstancesPerProjectionMetric),
+//                  SegmentEvaluationTimeMetric(validTSCInstancesPerProjectionMetric),
                   SegmentLengthMetric(validTSCInstancesPerProjectionMetric),
               )
               println("Run Evaluation")
