@@ -162,6 +162,11 @@ class ExperimentConfiguration : CliktCommand() {
   override fun run() {
       ApplicationConstantsHolder.folderName = folderName
       ApplicationConstantsHolder.featureName = featureName.lowercase().trim()
+      ApplicationConstantsHolder.segmentationType = segmentationType
+      ApplicationConstantsHolder.primarySegmentationValue = segmentationValue?: -1.0
+      ApplicationConstantsHolder.secondarySegmentationValue = secondarySegmentationValue?: -1.0
+      ApplicationConstantsHolder.tertiarySegmentationValue = tertiarySegmentationValue?: -1.0
+      ApplicationConstantsHolder.allEgo = allEgo
 
     ApplicationConstantsHolder.executionCommand =
         """
@@ -264,6 +269,7 @@ class ExperimentConfiguration : CliktCommand() {
 //                  FailedMonitorsMetric(validTSCInstancesPerProjectionMetric),
 //                  SegmentEvaluationTimeMetric(validTSCInstancesPerProjectionMetric),
                   SegmentLengthMetric(validTSCInstancesPerProjectionMetric),
+                  SegmentParameters(validTSCInstancesPerProjectionMetric)
               )
               println("Run Evaluation")
               runEvaluation(segments = segments)
