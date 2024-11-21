@@ -64,6 +64,11 @@ spotless {
 
 tasks.test { useJUnitPlatform() }
 
+tasks.distZip{
+    archiveFileName.set("distribution.zip")
+    destinationDirectory.set(layout.projectDirectory.dir("public"))
+}
+
 val reproductionTest by
     tasks.registering(JavaExec::class) {
       group = "verification"
