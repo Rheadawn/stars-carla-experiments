@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="run" />
-          <option value="--args=&quot;--segmentationType=DYNAMIC_SEGMENT_LENGTH_METERS_SPEED&quot;" />
+          <option value="--args=&quot;--segmentationType=DYNAMIC_SEGMENT_LENGTH_METERS_SPEED --minSegmentTicks=0&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
