@@ -42,7 +42,6 @@ import tools.aqua.stars.core.metric.metrics.postEvaluation.*
 import tools.aqua.stars.core.metric.utils.ApplicationConstantsHolder
 import tools.aqua.stars.core.metric.utils.ApplicationConstantsHolder.baselineDirectory
 import tools.aqua.stars.data.av.dataclasses.*
-import tools.aqua.stars.data.av.metrics.AverageVehiclesInEgosBlockMetric
 import tools.aqua.stars.importer.carla.CarlaSimulationRunsWrapper
 import tools.aqua.stars.importer.carla.loadSegments
 
@@ -90,7 +89,7 @@ class ExperimentConfiguration : CliktCommand() {
       option("--writePlotData", help = "Whether to write plot data to csv").flag(default = false)
 
   private val writeSerializedResults: Boolean by
-      option("--saveResults", help = "Whether to save serialized results").flag(default = false)
+      option("--saveResults", help = "Whether to save serialized results").flag(default = true)
 
   private val compareToBaselineResults: Boolean by
       option(
@@ -136,6 +135,22 @@ class ExperimentConfiguration : CliktCommand() {
         "The third parameter for the segmentation. E.g. stepSize.")
         .double()
 
+    private val valueList: List<Double> by
+        option(
+                "--valueList",
+                help =
+                    "A list of primary segmentation values for multistart segmentations")
+            .double().split(",")
+            .default(listOf())
+
+    private val secondaryValueList: List<Double> by
+        option(
+                "--secondaryValueList",
+                help =
+                    "A list of secondary segmentation values for multistart segmentations")
+            .double().split(",")
+            .default(listOf())
+
     private val addJunctions: Boolean by
         option(
                 "--addJunctions",
@@ -148,14 +163,14 @@ class ExperimentConfiguration : CliktCommand() {
             "--folderName",
             help =
             "Name of the folder for the serialized metric results")
-            .default("test_run")
+            .default("meters_tsc_coverage")
 
     private val featureName: String by
         option(
             "--featureName",
             help =
             "Name of the feature for the feature-coverage metric")
-            .default("Overtaking")
+            .default("seconds_tsc_coverage")
 
   // endregion
 
@@ -240,7 +255,7 @@ class ExperimentConfiguration : CliktCommand() {
             maxSegmentTickCount = maxSegmentTickCount,
             orderFilesBySeed = sortBySeed,
             simulationRunsWrappers = simulationRunsWrappers,
-            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, tertiarySegmentationValue, addJunctions)
+            segmentationBy = Segmentation.fromConsole(segmentationType, segmentationValue, secondarySegmentationValue, tertiarySegmentationValue, valueList, secondaryValueList, addJunctions)
         )
 
     val validTSCInstancesPerProjectionMetric =
